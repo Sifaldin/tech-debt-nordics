@@ -70,7 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${chakraPetch.variable} ${rajdhani.variable} ${shareTechMono.variable} saldo-backdrop antialiased flex min-h-screen flex-col`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${chakraPetch.variable} ${rajdhani.variable} ${shareTechMono.variable} saldo-backdrop antialiased flex min-h-dvh flex-col`}
       >
         <NavBar />
         <div className="flex flex-1 flex-col">{children}</div>

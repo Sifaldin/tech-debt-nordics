@@ -39,7 +39,12 @@ section[id] {
 
 /* --- Ambient night-city backdrop --- */
 body.saldo-backdrop {
-  min-height: 100vh;
+  /* 100dvh (dynamic viewport), not 100vh: on mobile Safari 100vh is the
+     TALLER toolbars-hidden height, so with the URL/tab bars showing the body
+     is forced taller than the screen and you can scroll into dead space below
+     the footer. dvh tracks the currently-visible viewport. (The fixed
+     backdrop above stays 100lvh on purpose so the cityscape doesn't rescale.) */
+  min-height: 100dvh;
   background-color: var(--color-ink);
   color: #e7ecf5;
   font-family:
