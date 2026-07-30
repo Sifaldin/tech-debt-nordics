@@ -944,6 +944,14 @@ body.saldo-backdrop::after {
 }
 
 /* --- Contact: blinking neon sign --- */
+/* the neon-sign's glow bleeds ~50px past its sides (.neon-sign::after); on
+   narrow viewports that spills beyond the screen and adds a phantom sideways
+   scroll. Clip horizontally here (the page-level overflow-x: clip on <html>
+   isn't reliable for pseudo-element bleed on iOS Safari) while leaving the
+   vertical glow and floor reflection untouched. */
+#contact {
+  overflow-x: clip;
+}
 /* hanging neon-tube sign: frosted-acrylic backing + a glowing neon TUBE border
    (bright near-white core with saturated cyan glow bleeding in and out) */
 .neon-sign {
