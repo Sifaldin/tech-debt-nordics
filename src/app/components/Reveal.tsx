@@ -18,6 +18,13 @@ const Reveal = ({ children, className = '', delay = 0 }: RevealProps) => {
       setShown(true);
       return;
     }
+    // threshold must stay 0. A ratio threshold is a proportion of the ELEMENT,
+    // so once an element grows taller than ~6x the viewport it can never show
+    // that fraction at once and the callback never fires, leaving the content
+    // stuck at opacity 0. That is exactly what happened to the services strip
+    // on phones: as a single column it is ~5700px tall, and the old 0.15 needed
+    // 860px visible at once. rootMargin does the same job in viewport units, so
+    // it behaves identically for a short heading and a very tall section.
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -25,7 +32,7 @@ const Reveal = ({ children, className = '', delay = 0 }: RevealProps) => {
           io.disconnect();
         }
       },
-      { threshold: 0.15 },
+      { threshold: 0, rootMargin: '0px 0px -12% 0px' },
     );
     io.observe(el);
     return () => io.disconnect();

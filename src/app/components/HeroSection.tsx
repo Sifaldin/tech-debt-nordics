@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
+import TechStack from './TechStack';
 
 const HeroSection: FC = () => (
   <section id="top" className="page-top relative overflow-hidden px-6 pb-10">
@@ -29,21 +29,13 @@ const HeroSection: FC = () => (
         </Link>
       </div>
 
-      {/* Right - tech-stack graphic layered over the city backdrop */}
+      {/* Right - tech-stack panel layered over the city backdrop */}
       {/* overhang capped at 20px: the section's px-6 leaves only 24px of gutter
           when the viewport sits at the container's max width, so a bigger pull
-          would put the graphic within 3px of the edge (or under it) at 1024px
+          would put the panel within 3px of the edge (or under it) at 1024px
           and 1280px exactly */}
       <div className="techstack-wrap w-full min-w-0 lg:w-[calc(100%_+_1.25rem)] lg:-mr-5 xl:-mr-5">
-        <Image
-          src="/assets/techstack.png"
-          alt="Tech Debt Nordics technology stack: languages, frameworks, integration, messaging, cloud and DevOps, data, tooling, and monitoring."
-          width={1280}
-          height={841}
-          className="techstack-img"
-          priority
-        />
-        <span className="techstack-sweep" aria-hidden="true" />
+        <TechStack />
       </div>
     </div>
   </section>

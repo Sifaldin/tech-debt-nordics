@@ -615,54 +615,190 @@ body.saldo-backdrop::after {
   transform: translateY(1px);
 }
 
-/* --- Tech-stack band (hero): pre-rendered HUD graphic keyed over the city backdrop --- */
+/* --- Tech-stack panel (hero) ---
+   Was a 642kB PNG. Now markup, so the stack is indexable text and an AI row
+   costs one array entry instead of a redraw. Keeps the float/glow/sweep the
+   image had, applied to the rows themselves. */
 .techstack-wrap {
   position: relative;
-  /* hard stop: whatever the width rules ask for, the graphic never comes
-     closer than 3px to either viewport edge */
+  /* hard stop: whatever the width rules ask for, the panel never comes closer
+     than 3px to either viewport edge */
   max-width: calc(100vw - 6px);
   animation: ts-float 7s ease-in-out infinite;
 }
-.techstack-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 30px rgba(53, 210, 230, 0.14));
+.ts-panel {
+  filter: drop-shadow(0 0 30px rgba(var(--signal-rgb), 0.14));
   animation: ts-glow 4.5s ease-in-out infinite;
 }
-/* cyan light-glint sweeping across, masked to the graphic so only the HUD lights up */
-.techstack-sweep {
+.ts-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+  padding-left: 0.35rem;
+}
+.ts-head-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: rgba(var(--xenon-rgb), 0.95);
+  text-shadow: 0 0 12px rgba(var(--signal-rgb), 0.6);
+}
+.ts-head-line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--signal-rgb), 0.6),
+    rgba(var(--signal-rgb), 0)
+  );
+}
+.ts-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* the angled HUD bar: clipped corners, cyan rim, violet bleed on the right */
+.ts-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 2.2rem 0.5rem 0.6rem;
+  /* fits a two-line label without making that row taller than its neighbours,
+     so the stack stays an even ladder */
+  min-height: 3.15rem;
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 22, 44, 0.9) 0%,
+      rgba(12, 26, 52, 0.86) 62%,
+      rgba(58, 26, 78, 0.8) 100%
+    ),
+    rgba(6, 12, 26, 0.72);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--signal-rgb), 0.42),
+    inset 0 0 22px rgba(var(--signal-rgb), 0.1),
+    0 0 16px rgba(var(--signal-rgb), 0.12);
+  animation: ts-row-sweep 6.5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+/* the light glint that used to sweep across the image */
+.ts-row::after {
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: linear-gradient(
     105deg,
     transparent 44%,
-    rgba(150, 248, 255, 0.5) 50%,
+    rgba(150, 248, 255, 0.22) 50%,
     transparent 56%
   );
   background-size: 250% 100%;
   background-repeat: no-repeat;
   mix-blend-mode: screen;
-  -webkit-mask-image: url(/assets/techstack.png);
-  mask-image: url(/assets/techstack.png);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
   animation: ts-sweep 6.5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
 }
-/* Phones: ~10% larger. Must sit AFTER the base .techstack-* rules - same
-   specificity, so the later block wins.
-   The overhang is a fixed 16px per side, not a percentage: the hero's px-6
-   leaves a 24px gutter, so a fixed pull can never bring the graphic closer
-   than 8px to the viewport edge at any phone width. (A percentage overhang
-   grows with the viewport and would cross the gutter on larger phones.)
-   Aspect ratio is untouched, so height rises with the width. */
+.ts-row-ico {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: rgba(var(--xenon-rgb), 0.95);
+  /* hexagon, matching the icon frames in the original graphic */
+  clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0 50%);
+  background: rgba(var(--signal-rgb), 0.14);
+  filter: drop-shadow(0 0 6px rgba(var(--signal-rgb), 0.5));
+}
+.ts-row-label {
+  flex: 0 0 auto;
+  width: 9.1rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  line-height: 1.25;
+  color: #fff;
+}
+.ts-row-rule {
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 1px;
+  background: rgba(var(--signal-rgb), 0.3);
+}
+.ts-row-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.7rem;
+  min-width: 0;
+}
+.ts-chip {
+  position: relative;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: rgba(226, 245, 255, 0.92);
+  white-space: nowrap;
+}
+/* thin separator between items, like the dividers in the original bars */
+.ts-chip + .ts-chip::before {
+  content: '';
+  position: absolute;
+  left: -0.36rem;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(var(--signal-rgb), 0.28);
+}
+/* the little connector stub hanging off the right of each bar */
+.ts-row-nub {
+  position: absolute;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(var(--xenon-rgb), 0.75);
+  box-shadow: 0 0 8px rgba(var(--signal-rgb), 0.7);
+}
+@media (max-width: 1023px) {
+  .ts-row-label {
+    width: 7.2rem;
+  }
+}
+/* Phones: the label sits above the items so long stacks stay readable
+   instead of squeezing into a narrow column. */
 @media (max-width: 640px) {
   .techstack-wrap {
     width: calc(100% + 32px);
     margin-inline: -16px;
+  }
+  .ts-row {
+    flex-wrap: wrap;
+    padding-right: 1.6rem;
+    row-gap: 0.35rem;
+  }
+  .ts-row-label {
+    width: auto;
+  }
+  .ts-row-rule {
+    display: none;
+  }
+  .ts-row-items {
+    flex-basis: 100%;
+    padding-left: 2.5rem;
   }
 }
 @keyframes ts-float {
@@ -692,10 +828,27 @@ body.saldo-backdrop::after {
     background-position: -35% 0;
   }
 }
+/* the rim brightens as the glint passes, so the bars feel lit rather than flat */
+@keyframes ts-row-sweep {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(var(--signal-rgb), 0.42),
+      inset 0 0 22px rgba(var(--signal-rgb), 0.1),
+      0 0 16px rgba(var(--signal-rgb), 0.12);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgba(var(--signal-rgb), 0.62),
+      inset 0 0 26px rgba(var(--signal-rgb), 0.16),
+      0 0 22px rgba(var(--signal-rgb), 0.2);
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .techstack-wrap,
-  .techstack-img,
-  .techstack-sweep {
+  .ts-panel,
+  .ts-row,
+  .ts-row::after {
     animation: none;
   }
 }
@@ -1025,6 +1178,33 @@ body.saldo-backdrop::after {
   /* column layout: no horizontal scroll, so the arrows are meaningless */
   .svc-nav {
     display: none;
+  }
+  /* the strip is a column here, so the practice divider lies flat and its
+     label reads normally instead of standing as a 288px column of sideways
+     text between the cards */
+  .svc-divider {
+    flex-direction: row;
+    align-self: auto;
+    width: 100%;
+    gap: 0.75rem;
+    padding: 0.4rem 0;
+  }
+  .svc-divider-line {
+    flex: 1 1 auto;
+    width: auto;
+    height: 1px;
+    min-height: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--xenon-rgb), 0.42),
+      transparent
+    );
+  }
+  .svc-divider-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.68rem;
   }
   /* nav CTA would overflow the header alongside the logo - hero has its own */
   .ghost-btn {
