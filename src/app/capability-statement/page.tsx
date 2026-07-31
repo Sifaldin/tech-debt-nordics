@@ -105,7 +105,7 @@ const OFFERINGS = [
 
 const STATS: [string, string][] = [
   ['8+', 'Years senior engineering experience'],
-  ['8', 'Core service areas'],
+  [String(OFFERINGS.length), 'Core service areas'],
   ['9', 'Companies built & scaled at'],
   ['6', 'Cities across 5 countries'],
 ];
@@ -238,23 +238,29 @@ const Top: FC<{ kicker: string }> = ({ kicker }) => (
   </div>
 );
 
+// Pages are numbered by their order in the document rather than by hand, so
+// adding or removing a <Page> cannot leave the footer claiming the wrong total.
+const PAGES = ['2026', 'Why Us', 'Capabilities', 'Track Record', 'Technology'];
+const pad = (n: number) => String(n).padStart(2, '0');
+
 const Foot: FC<{ page: string }> = ({ page }) => (
   <div className="cap-foot">
     <span>© 2026 TECH DEBT NORDICS</span>
     <span>{CONTACT.web}</span>
-    <span>{page} / 05</span>
+    <span>
+      {page} / {pad(PAGES.length)}
+    </span>
   </div>
 );
 
-const Page: FC<{ kicker: string; page: string; children: ReactNode }> = ({
+const Page: FC<{ kicker: string; children: ReactNode }> = ({
   kicker,
-  page,
   children,
 }) => (
   <section className="cap-page">
     <Top kicker={kicker} />
     <div className="cap-body">{children}</div>
-    <Foot page={page} />
+    <Foot page={pad(PAGES.indexOf(kicker) + 1)} />
   </section>
 );
 
@@ -280,7 +286,7 @@ export default function CapabilityStatement() {
 
       <div className="cap-viewport">
         {/* ---------- Page 1 - Cover ---------- */}
-        <Page kicker="2026" page="01">
+        <Page kicker="2026">
           <div className="cap-cover-hero">
             <p className="cap-eyebrow">Capability Statement</p>
             <h1 className="cap-title">
@@ -341,7 +347,7 @@ export default function CapabilityStatement() {
         </Page>
 
         {/* ---------- Page 2 - Why + Selected Experience ---------- */}
-        <Page kicker="Why Us" page="02">
+        <Page kicker="Why Us">
           <section className="cap-section">
             <p className="cap-eyebrow">Why Tech Debt Nordics</p>
             <h2 className="cap-h2">An engineering firm, not a staffing desk</h2>
@@ -363,7 +369,7 @@ export default function CapabilityStatement() {
         </Page>
 
         {/* ---------- Page 3 - Capabilities ---------- */}
-        <Page kicker="Capabilities" page="03">
+        <Page kicker="Capabilities">
           <p className="cap-eyebrow">What we do</p>
           <h2 className="cap-h2">
             Pay down the <span className="pink">debt</span>
@@ -390,7 +396,7 @@ export default function CapabilityStatement() {
         </Page>
 
         {/* ---------- Page 4 - Track Record + Engagement ---------- */}
-        <Page kicker="Track Record" page="04">
+        <Page kicker="Track Record">
           <section className="cap-section">
             <p className="cap-eyebrow">Track Record</p>
             <h2 className="cap-h2">Built &amp; scaled at</h2>
@@ -428,7 +434,7 @@ export default function CapabilityStatement() {
         </Page>
 
         {/* ---------- Page 5 - Technology + Expertise + Contact ---------- */}
-        <Page kicker="Technology" page="05">
+        <Page kicker="Technology">
           <section className="cap-section">
             <p className="cap-eyebrow">Technology &amp; Tools</p>
             <h2 className="cap-h2">Our stack</h2>

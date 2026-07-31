@@ -76,6 +76,34 @@ body.saldo-backdrop::before {
     url('/assets/cityscape.jpg') center 16% / cover no-repeat;
   filter: saturate(1.85) contrast(1.14) brightness(1.05);
 }
+/* A CSS background never passes through next/image, so the JPEG above shipped
+   raw at 576kB on every page. Modern browsers take the avif (133kB) or webp
+   (154kB) instead.
+   This MUST stay inside @supports. Declared as a plain second `background` on
+   the rule above, Lightning CSS de-duplicates the property and deletes the
+   JPEG fallback outright, leaving only image-set plus a -webkit-image-set that
+   older Safari cannot parse (no type() support), which drops the whole
+   declaration and the backdrop with it. @supports keeps them separate.
+   Overriding background-image alone preserves the position/size set by the
+   shorthand, including the phone crop in the media query below. */
+@supports (
+  background-image: image-set(url('/assets/x.avif') type('image/avif'))
+) {
+  body.saldo-backdrop::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(7, 11, 22, 0.18) 0%,
+        rgba(7, 11, 22, 0.38) 42%,
+        rgba(7, 11, 22, 0.8) 76%,
+        #070b16 100%
+      ),
+      image-set(
+        url('/assets/cityscape.avif') type('image/avif'),
+        url('/assets/cityscape.webp') type('image/webp')
+      );
+  }
+}
 /* on phones, shift the crop left to feature the building with the
    Tech Debt Nordics sign */
 @media (max-width: 767px) {
@@ -826,6 +854,39 @@ body.saldo-backdrop::after {
   filter: drop-shadow(0 0 6px rgba(var(--glow-rgb), 0.85))
     drop-shadow(0 0 18px rgba(var(--glow-rgb), 0.45));
 }
+/* Opens a new practice inside the scroll strip. A vertical rule with the
+   practice name running up it, so the software cards and the project controls
+   cards read as two groups rather than one list of thirteen. */
+.svc-divider {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  align-self: stretch;
+  padding: 0 0.5rem;
+}
+.svc-divider-line {
+  flex: 1 1 auto;
+  width: 1px;
+  min-height: 1.5rem;
+  background: linear-gradient(
+    var(--divider-fade, transparent),
+    rgba(var(--xenon-rgb), 0.42),
+    var(--divider-fade, transparent)
+  );
+}
+.svc-divider-label {
+  /* reads bottom-to-top so the rule stays narrow in a horizontal strip */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  white-space: nowrap;
+  color: rgba(var(--xenon-rgb), 0.85);
+  text-shadow: 0 0 10px rgba(var(--xenon-rgb), 0.35);
+}
+
 /* Marks a card as belonging to a separate practice (project controls) rather
    than the software engineering line. Deliberately quiet: it labels the card,
    it does not compete with the title. */

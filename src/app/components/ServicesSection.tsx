@@ -447,43 +447,53 @@ const ServicesSection: FC = () => {
           >
             {SERVICES.map((s, i) => {
               const g = GLOW[i % GLOW.length];
+              // a labelled rule opens each new practice, so the strip reads as
+              // grouped runs rather than one undifferentiated list of 13
+              const opensPractice = !!s.practice && !SERVICES[i - 1]?.practice;
               return (
-                <div
-                  className="svc-tile"
-                  key={s.title}
-                  style={
-                    {
-                      '--off': i % 2 === 0 ? '-20px' : '20px',
-                      '--glow-rgb': g.rgb,
-                      '--gx': g.x,
-                      '--gy': g.y,
-                      '--gi': g.i,
-                      animationDelay: `${i * 0.6}s`,
-                    } as CSSProperties
-                  }
-                >
-                  <div className="svc-ico neon-icon">
-                    <ServiceIcon name={s.icon} />
-                  </div>
-                  {s.practice && (
-                    <span className="svc-practice t-hud">{s.practice}</span>
+                <React.Fragment key={s.title}>
+                  {opensPractice && (
+                    <div className="svc-divider">
+                      <span className="svc-divider-line" aria-hidden="true" />
+                      <span className="svc-divider-label t-hud">
+                        {s.practice}
+                      </span>
+                      <span className="svc-divider-line" aria-hidden="true" />
+                    </div>
                   )}
-                  <h3 className="svc-title t-card-title">{s.title}</h3>
-                  <ul className="svc-bullets">
-                    {s.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                  <div className="svc-outcome">
-                    <span className="svc-outcome-label">Outcome</span>
-                    <p className="svc-outcome-text card-copy">{s.outcome}</p>
+                  <div
+                    className="svc-tile"
+                    style={
+                      {
+                        '--off': i % 2 === 0 ? '-20px' : '20px',
+                        '--glow-rgb': g.rgb,
+                        '--gx': g.x,
+                        '--gy': g.y,
+                        '--gi': g.i,
+                        animationDelay: `${i * 0.6}s`,
+                      } as CSSProperties
+                    }
+                  >
+                    <div className="svc-ico neon-icon">
+                      <ServiceIcon name={s.icon} />
+                    </div>
+                    <h3 className="svc-title t-card-title">{s.title}</h3>
+                    <ul className="svc-bullets">
+                      {s.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                    <div className="svc-outcome">
+                      <span className="svc-outcome-label">Outcome</span>
+                      <p className="svc-outcome-text card-copy">{s.outcome}</p>
+                    </div>
+                    <div className="svc-ticks" aria-hidden="true">
+                      {TICKS.map((h, k) => (
+                        <i key={k} style={{ height: `${h}px` }} />
+                      ))}
+                    </div>
                   </div>
-                  <div className="svc-ticks" aria-hidden="true">
-                    {TICKS.map((h, k) => (
-                      <i key={k} style={{ height: `${h}px` }} />
-                    ))}
-                  </div>
-                </div>
+                </React.Fragment>
               );
             })}
           </div>
