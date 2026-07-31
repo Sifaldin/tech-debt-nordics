@@ -5,10 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { FC } from 'react';
 
+// Capability Statement is footer-only: it belongs in the site's link graph
+// (it was orphaned, reachable only from the sitemap) but it is a sales
+// document, not top-level navigation.
 const LINKS = [
   { label: 'Home', href: '/#top' },
   { label: 'Team', href: '/team' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Capability Statement', href: '/capability-statement' },
 ];
 
 const Footer: FC = () => {
@@ -39,7 +43,9 @@ const Footer: FC = () => {
           </span>
         </Link>
 
-        <nav className="flex items-center gap-7">
+        {/* wraps: "Capability Statement" is long enough to overflow the row
+            between the logo and the location sign on narrow desktop widths */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
           {LINKS.map((link) => (
             <Link
               key={link.href}

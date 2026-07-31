@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { CSSProperties, FC, ReactNode } from 'react';
 import { ServiceIcon } from '../components/ServicesSection';
 import { COMPANIES } from '../components/TrackRecord';
-import { TEAM } from '../components/TeamCarousel';
+import { TEAM } from '../data/team';
 import './capability.css';
 
 // Every string below is drawn from live-site content (hero, metadata,

@@ -9,6 +9,7 @@ import {
 import './globals.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import { SITE_URL } from './site';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -39,8 +40,6 @@ const shareTechMono = Share_Tech_Mono({
   weight: '400',
   subsets: ['latin'],
 });
-
-const SITE_URL = 'https://techdebtnordics.se';
 
 const TITLE =
   'Tech Debt Nordics: B2B Software, AI & Full-Stack Engineering Consultancy';
@@ -142,8 +141,7 @@ export const metadata: Metadata = {
 // Structured data so search engines read the offering as B2B software
 // engineering (frontend, backend, full-stack, AI, native apps, support) rather
 // than inferring "web agency" from the copy alone.
-const JSON_LD = {
-  '@context': 'https://schema.org',
+const ORGANIZATION_LD = {
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#organization`,
   name: 'Tech Debt Nordics',
@@ -255,6 +253,25 @@ const JSON_LD = {
       itemOffered: { '@type': 'Service', name },
     })),
   },
+};
+
+// Names the site as an entity distinct from the company, and lets Google
+// associate the two. Emitted in the same @graph as the organization.
+const WEBSITE_LD = {
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: 'Tech Debt Nordics',
+  description: DESCRIPTION,
+  inLanguage: 'en',
+  publisher: { '@id': `${SITE_URL}/#organization` },
+};
+
+// One graph rather than separate script tags, so the @id references between
+// the nodes actually resolve for consumers.
+const JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [ORGANIZATION_LD, WEBSITE_LD],
 };
 
 export default function RootLayout({
