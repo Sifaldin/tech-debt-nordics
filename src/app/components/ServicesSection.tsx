@@ -10,10 +10,23 @@ import React, {
 } from 'react';
 import Reveal from './Reveal';
 
+// `practice` marks a card as belonging to a distinct practice rather than the
+// software engineering line. Absent on the engineering cards, set on the
+// project controls ones so the two are never presented as the same offering.
+type Service = {
+  n: string;
+  title: string;
+  points: string[];
+  outcome: string;
+  icon: string;
+  practice?: string;
+};
+
 // Ordered by what we want to be found for: AI and the three engineering
 // disciplines (frontend / backend / full-stack) lead, then the delivery
-// capabilities that show we take on whatever the problem needs.
-export const SERVICES = [
+// capabilities that show we take on whatever the problem needs. Project
+// controls sits at the end as its own practice.
+export const SERVICES: Service[] = [
   {
     n: '01',
     title: 'AI Engineering',
@@ -133,17 +146,34 @@ export const SERVICES = [
     outcome: 'Someone who answers when it breaks.',
     icon: 'support',
   },
+  // --- Project controls. A separate practice from the software work above:
+  // different discipline, different clients, different team (Anwar). Tagged so
+  // the cards read as their own thing rather than another engineering service.
   {
     n: '12',
-    title: 'Project Planning & Controls',
+    title: 'Planning & Scheduling',
+    practice: 'Project Planning & Controls',
     points: [
       'Primavera P6 scheduling',
-      'Cost-loaded planning & forecasting',
-      'Delay & schedule risk analysis',
+      'Cost-loaded & resource-loaded plans',
+      'Baseline development & forecasting',
+      'Progress measurement',
+    ],
+    outcome: 'A schedule the whole programme can plan against.',
+    icon: 'planning',
+  },
+  {
+    n: '13',
+    title: 'Schedule Risk & Delay Analysis',
+    practice: 'Project Planning & Controls',
+    points: [
+      'Acumen Risk & QSRA',
+      'Delay and disruption analysis',
+      'Claims and EOT support',
       'Power BI portfolio reporting',
     ],
-    outcome: 'Predictable delivery for complex mega-projects.',
-    icon: 'planning',
+    outcome: 'Know where the programme slips before it slips.',
+    icon: 'risk',
   },
 ];
 
@@ -225,6 +255,18 @@ export const ServiceIcon: FC<{ name: string }> = ({ name }) => {
           <path d="M28.5 10.5h7" />
           <circle cx="32" cy="53.5" r="2" {...dot} />
           <path d="M26 25h12M26 32h12M26 39h8" />
+        </svg>
+      );
+    // S-curve trending off a baseline with a warning marker - schedule risk
+    case 'risk':
+      return (
+        <svg {...p}>
+          <path d="M9 54h46" />
+          <path d="M9 47h4" />
+          <path d="M13 47c9 0 12-24 20-24s11 12 21 12" strokeDasharray="5 4" />
+          <path d="M13 51c9 0 13-16 21-16s11 8 20 8" />
+          <path d="M46 10v9" />
+          <circle cx="46" cy="24" r="1.9" {...dot} />
         </svg>
       );
     // shield with a check - ongoing support & maintenance
@@ -376,9 +418,13 @@ const ServicesSection: FC = () => {
           </h2>
           <p className="card-copy mx-auto mt-5 max-w-2xl text-slate-300/85">
             B2B engineering across the whole stack: AI, frontend, backend,
-            native apps, cloud and the support that keeps them alive. Plus
-            Primavera P6 planning and project controls for capital projects. If
-            it needs building, we build it.
+            native apps, cloud and the support that keeps them alive. If it
+            needs building, we build it.
+          </p>
+          <p className="card-copy mx-auto mt-3 max-w-2xl text-slate-400">
+            Separately, we run a Project Planning &amp; Controls practice for
+            construction and energy programmes. Different discipline, different
+            team, same bar for delivery.
           </p>
         </div>
       </Reveal>
@@ -419,6 +465,9 @@ const ServicesSection: FC = () => {
                   <div className="svc-ico neon-icon">
                     <ServiceIcon name={s.icon} />
                   </div>
+                  {s.practice && (
+                    <span className="svc-practice t-hud">{s.practice}</span>
+                  )}
                   <h3 className="svc-title t-card-title">{s.title}</h3>
                   <ul className="svc-bullets">
                     {s.points.map((point) => (

@@ -92,7 +92,7 @@ const OFFERINGS = [
   },
   {
     n: '08',
-    title: 'Project Controls',
+    title: 'Project Planning & Controls',
     icon: 'planning',
     points: [
       'Primavera P6 scheduling',
@@ -186,7 +186,7 @@ const TECH: [string, string[]][] = [
   ],
   ['Messaging & Integration', ['Apache Camel', 'Kafka', 'RabbitMQ']],
   ['Data', ['PostgreSQL', 'MongoDB', 'Redis']],
-  ['Project Controls', ['Primavera P6', 'Power BI', 'Acumen Risk']],
+  ['Project Planning & Controls', ['Primavera P6', 'Power BI', 'Acumen Risk']],
 ];
 
 const DOMAINS = [
@@ -200,7 +200,7 @@ const DOMAINS = [
   'Cloud & Platform',
   'Integrations',
   'Support & Maintenance',
-  'Project Controls',
+  'Project Planning & Controls',
 ];
 
 // One line per person (condensed from their site bios), keyed by first name.

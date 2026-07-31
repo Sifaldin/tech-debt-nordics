@@ -64,10 +64,12 @@ const Footer: FC = () => {
         <p className="mx-auto mb-2 max-w-3xl text-[11px] leading-relaxed text-slate-500">
           B2B software engineering consultancy: AI, frontend, backend and
           full-stack development, native iOS and Android apps, cloud and
-          platform engineering, integrations, website &amp; app support, and
-          Primavera P6 project planning &amp; controls. A Swedish EU company
-          working in Stockholm, Dubai, Abu Dhabi, Riyadh, Amman and Damascus,
-          across the EU and EEA, and remote worldwide.
+          platform engineering, integrations, and website &amp; app support. We
+          also run a separate Project Planning &amp; Controls practice:
+          Primavera P6 scheduling, cost-loaded planning, and delay and schedule
+          risk analysis. A Swedish EU company working in Stockholm, Dubai, Abu
+          Dhabi, Riyadh, Amman and Damascus, across the EU and EEA, and remote
+          worldwide.
         </p>
         <p className="t-hud text-[10px] !tracking-[0.2em] text-slate-500">
           © 2026 TECH DEBT NORDICS AB - ALL RIGHTS RESERVED

@@ -45,7 +45,7 @@ const SITE_URL = 'https://techdebtnordics.se';
 const TITLE =
   'Tech Debt Nordics: B2B Software, AI & Full-Stack Engineering Consultancy';
 const DESCRIPTION =
-  'B2B software engineering consultancy. An EU company based in Stockholm, working across Europe, the Gulf and the Levant, and remote worldwide. Senior frontend, backend, full-stack and AI engineers building web platforms, native apps, cloud infrastructure and integrations, plus Primavera P6 project planning and controls.';
+  'B2B software engineering consultancy. An EU company based in Stockholm, working across Europe, the Gulf and the Levant, and remote worldwide. Senior frontend, backend, full-stack and AI engineers building web platforms, native apps, cloud infrastructure and integrations. Separate Project Planning and Controls practice for Primavera P6 scheduling and schedule risk analysis.';
 
 // The cities we take work in. Each one is named explicitly (rather than rolled
 // up as "the Middle East") so it can be matched on its own in local search, and
@@ -218,7 +218,7 @@ const JSON_LD = {
     'Payments and checkout',
     'Technical debt reduction',
     'Website support and maintenance',
-    'Project controls',
+    'Project planning and controls',
     'Primavera P6 scheduling',
     'Cost-loaded planning and forecasting',
     'Delay and schedule risk analysis',
