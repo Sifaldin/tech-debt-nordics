@@ -60,7 +60,7 @@ const NavBar: FC = () => {
         </div>
 
         {/* On /contact the CTA would just reload the page. It stays in the DOM
-            but invisible so the nav links keep their position — the header is
+            but invisible so the nav links keep their position - the header is
             sticky across pages, and dropping the element outright would shunt
             them sideways on this page only. */}
         <Link

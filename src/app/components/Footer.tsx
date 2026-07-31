@@ -57,8 +57,21 @@ const Footer: FC = () => {
           STOCKHOLM, SWEDEN
         </div>
       </div>
-      <div className="t-hud border-t border-edge/60 px-6 py-4 text-center text-[10px] !tracking-[0.2em] text-slate-500">
-        © 2026 TECH DEBT NORDICS - ALL RIGHTS RESERVED
+      <div className="border-t border-edge/60 px-6 py-4 text-center">
+        {/* plain-language summary of what we do and where, in the terms clients
+            search for. Present on every page for crawlers and for anyone who
+            scrolls. Cities match the Locations band and the JSON-LD areaServed. */}
+        <p className="mx-auto mb-2 max-w-3xl text-[11px] leading-relaxed text-slate-500">
+          B2B software engineering consultancy: AI, frontend, backend and
+          full-stack development, native iOS and Android apps, cloud and
+          platform engineering, integrations, website &amp; app support, and
+          Primavera P6 project planning &amp; controls. A Swedish EU company
+          working in Stockholm, Dubai, Abu Dhabi, Riyadh, Amman and Damascus,
+          across the EU and EEA, and remote worldwide.
+        </p>
+        <p className="t-hud text-[10px] !tracking-[0.2em] text-slate-500">
+          © 2026 TECH DEBT NORDICS AB - ALL RIGHTS RESERVED
+        </p>
       </div>
     </footer>
   );

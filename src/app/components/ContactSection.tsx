@@ -24,9 +24,10 @@ const ContactSection: FC = () => (
               <span className="neon-word pink">Talk</span>
             </h3>
 
-            <p className="card-copy mx-auto mb-8 max-w-md text-slate-300/85">
-              Got an idea or a project in mind? Let&apos;s build something
-              great.
+            <p className="card-copy mx-auto mb-8 max-w-lg text-slate-300/85">
+              A new AI feature, a frontend or backend team to plug into, a
+              native app, or a platform that needs rescuing. Tell us what you
+              need built and we&apos;ll tell you how we&apos;d do it.
             </p>
 
             <a href="mailto:info@techdebtnordics.se" className="neon-btn">
@@ -45,6 +46,9 @@ const ContactSection: FC = () => (
                 <a href="tel:+46722898436" className="link-neon t-num">
                   +46 722 898 436
                 </a>
+              </p>
+              <p className="pt-1 text-slate-400">
+                Stockholm · Dubai · Abu Dhabi · Riyadh · Amman · Damascus
               </p>
             </div>
           </div>

@@ -1,10 +1,10 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Cyberpunk palette — derived from the Saldo design system */
+  /* Cyberpunk palette - derived from the Saldo design system */
   --color-ink: #070b16; /* deep-navy ink floor */
   --color-ink-2: #0b1220;
-  --color-signal: #35d2e6; /* cyan — the one UI accent */
+  --color-signal: #35d2e6; /* cyan - the one UI accent */
   --color-positive: #43d6a0; /* green */
   --color-danger: #f0826a; /* coral */
   --color-caution: #e8b765; /* amber */
@@ -165,7 +165,7 @@ body.saldo-backdrop::after {
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   backdrop-filter: blur(14px) saturate(150%);
 }
-/* gradient hairline with cyan bloom — cyan → violet → out */
+/* gradient hairline with cyan bloom - cyan → violet → out */
 .chrome-edge {
   position: absolute;
   left: 0;
@@ -216,7 +216,7 @@ body.saldo-backdrop::after {
 .nav-link.is-active::after {
   right: 0;
 }
-/* current page — underline stays lit */
+/* current page - underline stays lit */
 .nav-link.is-active {
   color: #eafdff;
   text-shadow:
@@ -344,7 +344,7 @@ body.saldo-backdrop::after {
   justify-content: center;
 }
 
-/* Every page's first section starts the same short distance below the nav —
+/* Every page's first section starts the same short distance below the nav -
    keep new top-level sections on this instead of a one-off pt-* utility. */
 .page-top {
   padding-top: 2rem;
@@ -357,7 +357,7 @@ body.saldo-backdrop::after {
 }
 
 /* --- Type helpers --- */
-/* Hero headings — Chakra Petch (max weight 700) */
+/* Hero headings - Chakra Petch (max weight 700) */
 .t-hero {
   font-family: var(--font-chakra), var(--font-rajdhani), sans-serif;
   font-weight: 700;
@@ -365,7 +365,7 @@ body.saldo-backdrop::after {
   letter-spacing: 0.05em;
   line-height: 1;
 }
-/* Section headings — Chakra Petch 700 */
+/* Section headings - Chakra Petch 700 */
 .t-heading {
   font-family: var(--font-chakra), var(--font-rajdhani), sans-serif;
   font-weight: 700;
@@ -373,20 +373,20 @@ body.saldo-backdrop::after {
   letter-spacing: 0.03em;
   line-height: 1.08;
 }
-/* Card titles — Chakra Petch 500 */
+/* Card titles - Chakra Petch 500 */
 .t-card-title {
   font-family: var(--font-chakra), var(--font-rajdhani), sans-serif;
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.2;
 }
-/* Numbers — JetBrains Mono */
+/* Numbers - JetBrains Mono */
 .t-num {
   font-family: var(--font-jetbrains-mono), ui-monospace, Menlo, monospace;
   font-weight: 700;
   font-feature-settings: 'tnum';
 }
-/* HUD / technical / UI labels — Share Tech Mono */
+/* HUD / technical / UI labels - Share Tech Mono */
 .t-hud {
   font-family:
     var(--font-share-tech), ui-monospace, 'SF Mono', Menlo, monospace;
@@ -401,9 +401,24 @@ body.saldo-backdrop::after {
   font-size: 0.72rem;
   color: var(--color-signal);
 }
-/* text glow — reserved for hero + primary section titles only */
+/* text glow - reserved for hero + primary section titles only */
 .glow {
   text-shadow: 0 0 26px rgba(var(--signal-rgb), 0.45);
+}
+
+/* Hero subhead - the disciplines line under the h1. Tracking is tighter than a
+   plain .eyebrow because the four terms run ~544px wide: one line from ~600px
+   up, two balanced lines on a phone. */
+.hero-sub {
+  max-width: 34rem;
+  letter-spacing: 0.1em;
+  color: rgba(var(--signal-rgb), 0.85);
+  text-wrap: balance;
+}
+@media (max-width: 600px) {
+  .hero-sub {
+    letter-spacing: 0.06em;
+  }
 }
 
 /* --- Track record: companies the team has shipped at (home, above services) --- */
@@ -419,7 +434,7 @@ body.saldo-backdrop::after {
   text-transform: uppercase;
   color: #d7fbff;
 }
-/* a small auto-spinning 3D cylinder of company badges — each face is a neon
+/* a small auto-spinning 3D cylinder of company badges - each face is a neon
    monogram coin + name, arranged around a cylinder that rotates on its Y axis.
    --cyl-r (radius) is tuned to the face count so plates sit shoulder-to-shoulder */
 .logo-cyl-scene {
@@ -497,7 +512,7 @@ body.saldo-backdrop::after {
   color: #cdeef5;
   text-shadow: 0 0 6px rgba(var(--signal-rgb), 0.4);
 }
-/* readable, static fallback — shown only when the user prefers reduced motion */
+/* readable, static fallback - shown only when the user prefers reduced motion */
 .logo-flat {
   display: none;
   flex-wrap: wrap;
@@ -609,7 +624,7 @@ body.saldo-backdrop::after {
   mask-repeat: no-repeat;
   animation: ts-sweep 6.5s ease-in-out infinite;
 }
-/* Phones: ~10% larger. Must sit AFTER the base .techstack-* rules — same
+/* Phones: ~10% larger. Must sit AFTER the base .techstack-* rules - same
    specificity, so the later block wins.
    The overhang is a fixed 16px per side, not a percentage: the hero's px-6
    leaves a 24px gutter, so a fixed pull can never bring the graphic closer
@@ -798,7 +813,7 @@ body.saldo-backdrop::after {
       inset 0 1px 0 rgba(255, 255, 255, 0.09);
   }
 }
-/* big icon sitting directly on the card, centered — no containing box */
+/* big icon sitting directly on the card, centered - no containing box */
 .svc-ico {
   position: relative;
   z-index: 1;
@@ -825,7 +840,7 @@ body.saldo-backdrop::after {
   position: relative;
   z-index: 1;
   /* shrink-wrap the list to its longest item and centre that block under the
-     title — the items stay left-aligned to each other, but the group is no
+     title - the items stay left-aligned to each other, but the group is no
      longer pinned to the card's left edge */
   width: fit-content;
   max-width: 100%;
@@ -886,7 +901,7 @@ body.saldo-backdrop::after {
   line-height: 1.4;
   color: #fff;
 }
-/* bottom signal-meter — glowing parameter ticks spread across the full width */
+/* bottom signal-meter - glowing parameter ticks spread across the full width */
 .svc-ticks {
   position: relative;
   z-index: 1;
@@ -903,7 +918,7 @@ body.saldo-backdrop::after {
   box-shadow: 0 0 5px rgba(var(--glow-rgb), 0.65);
 }
 /* phones: stack the cards into a single column instead of a horizontal
-   scroll strip — no zigzag offset, full width, roomier text */
+   scroll strip - no zigzag offset, full width, roomier text */
 @media (max-width: 767px) {
   .svc-strip {
     flex-direction: column;
@@ -912,7 +927,7 @@ body.saldo-backdrop::after {
     padding: 0.5rem 0;
   }
   /* the zigzag --off is still set inline per card, so the hover state has to be
-     flattened too — otherwise a tap lifts the card out of the column and it
+     flattened too - otherwise a tap lifts the card out of the column and it
      rides up under the heading above */
   .svc-tile,
   .svc-tile:hover {
@@ -927,7 +942,7 @@ body.saldo-backdrop::after {
   .svc-nav {
     display: none;
   }
-  /* nav CTA would overflow the header alongside the logo — hero has its own */
+  /* nav CTA would overflow the header alongside the logo - hero has its own */
   .ghost-btn {
     display: none;
   }
@@ -939,7 +954,7 @@ body.saldo-backdrop::after {
     font-size: 1.05rem;
   }
   /* the card is content-height on phones, so `margin-top: auto` collapses and
-     the outcome separator hugs the bullets — give it a small real margin */
+     the outcome separator hugs the bullets - give it a small real margin */
   .svc-outcome {
     margin-top: 1.1rem;
   }
@@ -1017,7 +1032,7 @@ body.saldo-backdrop::after {
   filter: blur(16px);
   pointer-events: none;
 }
-/* small pink neon "open" tag — the ONE element that blinks */
+/* small pink neon "open" tag - the ONE element that blinks */
 .neon-accent {
   display: inline-flex;
   align-items: center;
@@ -1181,6 +1196,88 @@ body.saldo-backdrop::after {
   }
 }
 
+/* --- Locations band: the cities we take work in (home, below services) --- */
+.loc-band {
+  border-top: 1px solid rgba(var(--signal-rgb), 0.1);
+  border-bottom: 1px solid rgba(var(--signal-rgb), 0.1);
+}
+.loc-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+}
+.loc-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.1rem 0.6rem 0.9rem;
+  border: 1px solid rgba(var(--signal-rgb), 0.28);
+  border-radius: 999px;
+  background: rgba(var(--signal-rgb), 0.05);
+  box-shadow: inset 0 0 18px rgba(var(--signal-rgb), 0.07);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+@media (hover: hover) {
+  .loc-chip:hover {
+    border-color: rgba(var(--signal-rgb), 0.6);
+    box-shadow:
+      inset 0 0 20px rgba(var(--signal-rgb), 0.12),
+      0 0 18px rgba(var(--signal-rgb), 0.25);
+    transform: translateY(-2px);
+  }
+}
+/* the registered base reads pink, the way primary accents do elsewhere */
+.loc-chip.is-base {
+  border-color: rgba(var(--pink-rgb), 0.42);
+  background: rgba(var(--pink-rgb), 0.06);
+}
+.loc-chip.is-base .loc-chip-country {
+  color: rgba(var(--pink-rgb), 0.85);
+}
+/* the LED inside a chip is smaller than the footer's and staggered per chip */
+.loc-chip .loc-dot {
+  width: 6px;
+  height: 6px;
+  animation-delay: inherit;
+}
+.loc-chip-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.15;
+}
+.loc-chip-city {
+  font-family: var(--font-chakra), var(--font-rajdhani), sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.loc-chip-country {
+  font-family:
+    var(--font-share-tech), ui-monospace, 'SF Mono', Menlo, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.6rem;
+  color: rgba(var(--signal-rgb), 0.8);
+}
+/* trailing reach note under the city chips */
+.loc-reach {
+  letter-spacing: 0.22em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .loc-chip .loc-dot {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* neon-outline button */
 .neon-btn {
   display: inline-flex;
@@ -1287,7 +1384,7 @@ body.saldo-backdrop::after {
 /* --- 3D cylinder carousel (team) --- */
 /* Height must clear the *rendered* card, not its CSS box: at translateZ(520)
    under perspective:1800 the 325px card draws ~458px. Keep this just above that
-   — less and the card spills over the controls, more and it opens dead space
+   - less and the card spills over the controls, more and it opens dead space
    between the cylinder and the prev/next row. */
 .carousel-scene {
   position: relative;
@@ -1312,7 +1409,7 @@ body.saldo-backdrop::after {
   transform-style: preserve-3d;
   animation: carousel-spin 34s linear infinite;
 }
-/* Only a *selected* card pauses the spin (.is-frozen) — hovering does not.
+/* Only a *selected* card pauses the spin (.is-frozen) - hovering does not.
    .is-frozen holds steady through the flip/orient animations and is released on
    leaving the card (see card-3d onMouseLeave), so the pause stays card-scoped
    rather than scene-wide. */
@@ -1328,7 +1425,7 @@ body.saldo-backdrop::after {
   }
 }
 
-/* positioner — places each card on the cylinder */
+/* positioner - places each card on the cylinder */
 .card-3d {
   /* cylinder radius sets the gap between neighbouring cards: at 4 cards 90deg
      apart, a bigger radius pushes the side cards further off the front one */
@@ -1404,7 +1501,7 @@ body.saldo-backdrop::after {
 .card-inner.is-flipped .card-back {
   visibility: visible;
 }
-/* acrylic gloss across the backing — same as the sign's */
+/* acrylic gloss across the backing - same as the sign's */
 .card-face::before {
   content: '';
   position: absolute;
@@ -1436,7 +1533,7 @@ body.saldo-backdrop::after {
       transparent 62%
     );
 }
-/* The scroll surface is the card's whole inner area, not just the text block —
+/* The scroll surface is the card's whole inner area, not just the text block -
    on a phone the finger has to be able to land anywhere on the card and drag.
    The face itself can't be the scroller (its ::before/::after neon overlays are
    absolutely positioned and would scroll away), hence this inner port. */
@@ -1459,7 +1556,7 @@ body.saldo-backdrop::after {
   display: none;
 }
 /* Chips sit centred in the port while they fit, top-aligned once they don't.
-   Done with an auto margin on the item rather than justify-content: center —
+   Done with an auto margin on the item rather than justify-content: center -
    centring a flex item that overflows pushes half the overflow above the
    container's top edge, where scrollTop can never reach it. Auto margins
    collapse to zero when free space goes negative, so nothing gets stranded. */
@@ -1480,7 +1577,7 @@ body.saldo-backdrop::after {
   font-family: var(--font-chakra), var(--font-rajdhani), sans-serif;
   letter-spacing: 0.01em;
 }
-/* floated out of flow so the scrollport gets the face's full inner height —
+/* floated out of flow so the scrollport gets the face's full inner height -
    the port's own bottom padding keeps the last line clear of it */
 .flip-hint {
   position: absolute;
@@ -1495,7 +1592,7 @@ body.saldo-backdrop::after {
   text-transform: uppercase;
   color: rgba(var(--signal-rgb), 0.72);
 }
-/* cyberpunk name — Chakra Petch with a cyan neon glow */
+/* cyberpunk name - Chakra Petch with a cyan neon glow */
 .card-name {
   font-family: var(--font-chakra), sans-serif;
   font-weight: 700;
@@ -1518,7 +1615,7 @@ body.saldo-backdrop::after {
 }
 /* Desktop only: card contents trimmed 5% off the shared base sizes. Scoped to
    min-width so the phone values tuned in the max-width:640px block stand.
-   All four scale together — change them as a group. */
+   All four scale together - change them as a group. */
 @media (min-width: 641px) {
   .card-portrait img {
     width: 91px;
@@ -1534,7 +1631,7 @@ body.saldo-backdrop::after {
     font-size: 11.88px;
   }
 }
-/* breathing neon tube — dims and swells around the steady --tube-glow */
+/* breathing neon tube - dims and swells around the steady --tube-glow */
 @keyframes card-pulse {
   0%,
   100% {
@@ -1553,7 +1650,7 @@ body.saldo-backdrop::after {
   }
 }
 /* neon skill chips that blink like staggered status lights */
-/* plain wrapping row now — the scrollport around it does the scrolling */
+/* plain wrapping row now - the scrollport around it does the scrolling */
 .skill-grid {
   display: flex;
   flex: 0 0 auto;
@@ -1562,7 +1659,7 @@ body.saldo-backdrop::after {
   align-content: flex-start;
   gap: 6px;
 }
-/* small neon scroll chevrons for the active card's shown face — programmatic
+/* small neon scroll chevrons for the active card's shown face - programmatic
    scroll works even though the finger-drag can't inside a 3D card on Safari.
    They strike on like the contact "LET'S TALK" sign when the card is tapped. */
 .card-scroll {
@@ -1580,7 +1677,7 @@ body.saldo-backdrop::after {
   align-items: center;
   justify-content: center;
   /* Sized to RENDER the same as the carousel's 36px prev/next buttons. These
-     live on the card, so the perspective magnifies them ~1.41x — at a literal
+     live on the card, so the perspective magnifies them ~1.41x - at a literal
      36px they drew ~51px. 26 x 1.41 = 36. */
   width: 26px;
   height: 26px;
@@ -1625,7 +1722,7 @@ body.saldo-backdrop::after {
   padding: 4px 8px;
   border-radius: 4px;
   white-space: nowrap;
-  /* decorative labels — let touches fall through to the scrollable grid so a
+  /* decorative labels - let touches fall through to the scrollable grid so a
      swipe anywhere in the skills area scrolls (not just the gaps between chips) */
   pointer-events: none;
   color: #fff;
@@ -1672,7 +1769,7 @@ body.saldo-backdrop::after {
   }
 }
 
-/* prev / next / jump controls — step through the team on demand instead of
+/* prev / next / jump controls - step through the team on demand instead of
    waiting for the cylinder to bring the next member round */
 .carousel-nav {
   position: relative;
@@ -1767,7 +1864,7 @@ body.saldo-backdrop::after {
   /* Size the card to render 1:1 with the contact sign on phones. Both sections
      use px-6, so the sign is exactly (100vw - 3rem) wide. The card is magnified
      by perspective/(perspective - radius) = 1200/(1200-300) = 1.333x, so its CSS
-     box has to be the inverse — 0.75x — of the size we want on screen. Height is
+     box has to be the inverse - 0.75x - of the size we want on screen. Height is
      the sign's rendered height (~487px) through the same 0.75 factor. */
   :root {
     --team-card-w: calc((100vw - 3rem) * 0.75);

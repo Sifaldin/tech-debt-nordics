@@ -3,10 +3,10 @@ import Reveal from './Reveal';
 
 // Companies the team has built and scaled software at, from the team's CVs
 // (Mosaab, Sayf, Anwar) plus Yazan's prior workplace (Ubiquiti). Pedigree, not
-// signed clients — see the "Built & scaled at" framing. `mark` is a neon
+// signed clients - see the "Built & scaled at" framing. `mark` is a neon
 // monogram coin (real trademarked logos aren't used).
 // `logo` is a file in /public/assets/logos (recolored to neon via CSS mask).
-// Companies without one fall back to a monogram coin — drop their SVG in that
+// Companies without one fall back to a monogram coin - drop their SVG in that
 // folder and add `logo` here to complete the set.
 export const COMPANIES: { name: string; mark: string; logo?: string }[] = [
   { name: 'Klarna', mark: 'K', logo: 'klarna.svg' },

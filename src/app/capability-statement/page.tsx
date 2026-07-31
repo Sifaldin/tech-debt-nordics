@@ -8,31 +8,60 @@ import { TEAM } from '../components/TeamCarousel';
 import './capability.css';
 
 // Every string below is drawn from live-site content (hero, metadata,
-// services, track record, team bios). Numbers are grounded — nothing about
+// services, track record, team bios). Numbers are grounded - nothing about
 // scale, client counts, or seniority ratios is invented.
 const CONTACT = {
   legal: 'Tech Debt Nordics AB',
   location: 'Stockholm, Sweden',
-  focus: 'Software engineering consultancy',
+  markets: 'Stockholm · Dubai · Abu Dhabi · Riyadh · Amman · Damascus',
+  focus: 'B2B software & AI engineering consultancy',
   email: 'info@techdebtnordics.se',
   phone: '+46 722 898 436',
   web: 'techdebtnordics.se',
 };
 
-// Six offerings the seven site services roll up into (point 3).
+// Eight offerings the site services roll up into (page 3). AI and the
+// frontend/backend/full-stack split lead, matching the site's ordering.
 const OFFERINGS = [
   {
     n: '01',
-    title: 'Software Engineering',
-    icon: 'frontend',
+    title: 'AI Engineering',
+    icon: 'ai',
     points: [
-      'React, Next.js, TypeScript',
-      'Payments & checkout — Klarna, Botim, PaymentIQ',
-      'Accessible, performance-focused frontends',
+      'RAG & vector search',
+      'LLM APIs & agentic workflows',
+      'AI features in existing products',
+      'AI-assisted delivery',
     ],
   },
   {
     n: '02',
+    title: 'Frontend Engineering',
+    icon: 'frontend',
+    points: [
+      'React, Next.js, TypeScript',
+      'Design systems',
+      'Accessible, performance-focused frontends',
+    ],
+  },
+  {
+    n: '03',
+    title: 'Backend & API Engineering',
+    icon: 'backend',
+    points: [
+      'Java, Spring Boot, Node.js, Go',
+      'REST & GraphQL APIs',
+      'Distributed systems & databases',
+    ],
+  },
+  {
+    n: '04',
+    title: 'Native & Mobile Apps',
+    icon: 'mobile',
+    points: ['iOS & Android', 'React Native', 'App Store & Play delivery'],
+  },
+  {
+    n: '05',
     title: 'Cloud & Platform Engineering',
     icon: 'cloud',
     points: [
@@ -42,29 +71,27 @@ const OFFERINGS = [
     ],
   },
   {
-    n: '03',
-    title: 'Integration Engineering',
+    n: '06',
+    title: 'Integration & Payments',
     icon: 'integration',
-    points: ['Event-driven design', 'Apache Camel, Kafka', 'APIs & messaging'],
+    points: [
+      'Event-driven design',
+      'Apache Camel, Kafka',
+      'Checkout: Klarna, Botim, PaymentIQ',
+    ],
   },
   {
-    n: '04',
-    title: 'AI Solutions',
-    icon: 'audit',
-    points: ['RAG & vector search', 'LLM APIs', 'Agentic workflows'],
-  },
-  {
-    n: '05',
-    title: 'Technical Modernization',
+    n: '07',
+    title: 'Modernization & Support',
     icon: 'architecture',
     points: [
       'Platform assessment & debt quantification',
       'Prioritized modernization roadmap',
-      'Scalable architecture & system strategy',
+      'Website & app support, monitoring, patching',
     ],
   },
   {
-    n: '06',
+    n: '08',
     title: 'Project Controls',
     icon: 'planning',
     points: [
@@ -78,9 +105,9 @@ const OFFERINGS = [
 
 const STATS: [string, string][] = [
   ['8+', 'Years senior engineering experience'],
-  ['6', 'Core service areas'],
+  ['8', 'Core service areas'],
   ['9', 'Companies built & scaled at'],
-  ['Sweden', 'Stockholm-based consultancy'],
+  ['6', 'Cities across 5 countries'],
 ];
 
 const WHY: [string, string][] = [
@@ -95,19 +122,23 @@ const WHY: [string, string][] = [
   ['Cloud-native delivery', 'Modern platforms built on Azure, AWS, and GCP.'],
   [
     'Full-stack ownership',
-    'From frontend to infrastructure, one accountable team.',
+    'Frontend, backend, native apps and infrastructure in one accountable team.',
   ],
   [
     'Enterprise-grade',
     'Depth across payments, integration, and large-scale systems.',
   ],
   [
-    'AI-assisted engineering',
-    'Modern practices that accelerate delivery velocity.',
+    'AI-first engineering',
+    'We build AI into products, and use it to deliver faster.',
   ],
 ];
 
 const EXPERIENCE: [string, string][] = [
+  [
+    'AI Engineering',
+    'AI-powered applications and product features built with RAG, vector search, LLM APIs, and agentic workflows.',
+  ],
   [
     'Payments & Checkout',
     'Payment platform design and checkout optimization, with hands-on experience across Klarna, Botim, and PaymentIQ.',
@@ -119,10 +150,6 @@ const EXPERIENCE: [string, string][] = [
   [
     'Cloud Modernization',
     'Migrating platforms to Kubernetes and cloud-native architectures on Azure, AWS, and GCP.',
-  ],
-  [
-    'AI Solutions',
-    'AI-powered applications built with RAG, LLM APIs, and agentic workflows.',
   ],
 ];
 
@@ -141,28 +168,38 @@ const ENGAGEMENT: [string, string][] = [
     'Architecture Reviews',
     'Independent assessment of systems and technical debt.',
   ],
+  [
+    'Support Retainers',
+    'Ongoing website and app support, patching, and incident response.',
+  ],
 ];
 
-// Curated ~40% smaller, grouped stack — all pulled from the team's real skills.
+// Curated ~40% smaller, grouped stack - all pulled from the team's real skills.
 const TECH: [string, string[]][] = [
-  ['Backend', ['Java', 'Spring Boot', 'Quarkus', 'Node.js', 'Go']],
-  ['Frontend', ['React', 'Next.js', 'TypeScript', 'React Native']],
+  ['AI', ['RAG', 'LLM APIs', 'Agentic Workflows', 'Vector Search']],
+  ['Frontend', ['React', 'Next.js', 'TypeScript', 'Vue', 'Angular']],
+  ['Backend', ['Java', 'Spring Boot', 'Quarkus', 'Node.js', 'Go', 'GraphQL']],
+  ['Mobile', ['React Native', 'iOS', 'Android']],
   [
     'Cloud & DevOps',
     ['Azure', 'AWS', 'GCP', 'Kubernetes', 'Docker', 'Terraform', 'CI/CD'],
   ],
   ['Messaging & Integration', ['Apache Camel', 'Kafka', 'RabbitMQ']],
   ['Data', ['PostgreSQL', 'MongoDB', 'Redis']],
-  ['AI', ['RAG', 'LLM APIs', 'Agentic Workflows', 'Vector Search']],
   ['Project Controls', ['Primavera P6', 'Power BI', 'Acumen Risk']],
 ];
 
 const DOMAINS = [
+  'AI & GenAI',
+  'Frontend',
+  'Backend',
+  'Full-Stack',
+  'Native Apps',
   'Enterprise Software',
   'Payments',
   'Cloud & Platform',
-  'AI',
   'Integrations',
+  'Support & Maintenance',
   'Project Controls',
 ];
 
@@ -242,7 +279,7 @@ export default function CapabilityStatement() {
       </div>
 
       <div className="cap-viewport">
-        {/* ---------- Page 1 — Cover ---------- */}
+        {/* ---------- Page 1 - Cover ---------- */}
         <Page kicker="2026" page="01">
           <div className="cap-cover-hero">
             <p className="cap-eyebrow">Capability Statement</p>
@@ -253,10 +290,12 @@ export default function CapabilityStatement() {
               {CONTACT.legal} · {CONTACT.location}
             </p>
             <p className="cap-lede-hero">
-              Tech Debt Nordics is a Swedish software engineering consultancy
-              delivering full-stack development, cloud platforms, AI solutions,
-              integrations, and modernization initiatives for startups and
-              enterprise organizations.
+              Tech Debt Nordics is a Swedish B2B software engineering
+              consultancy delivering AI, frontend, backend and full-stack
+              development, native mobile apps, cloud platforms, integrations,
+              modernization and ongoing support for startups and enterprise
+              organizations. Registered in Stockholm and delivering into Dubai,
+              Abu Dhabi, Riyadh, Amman and Damascus.
             </p>
           </div>
 
@@ -286,6 +325,7 @@ export default function CapabilityStatement() {
               {[
                 ['Legal name', CONTACT.legal],
                 ['Headquarters', CONTACT.location],
+                ['Markets', CONTACT.markets],
                 ['Focus', CONTACT.focus],
                 ['Email', CONTACT.email],
                 ['Phone', CONTACT.phone],
@@ -300,7 +340,7 @@ export default function CapabilityStatement() {
           </div>
         </Page>
 
-        {/* ---------- Page 2 — Why + Selected Experience ---------- */}
+        {/* ---------- Page 2 - Why + Selected Experience ---------- */}
         <Page kicker="Why Us" page="02">
           <section className="cap-section">
             <p className="cap-eyebrow">Why Tech Debt Nordics</p>
@@ -322,7 +362,7 @@ export default function CapabilityStatement() {
           </section>
         </Page>
 
-        {/* ---------- Page 3 — Capabilities ---------- */}
+        {/* ---------- Page 3 - Capabilities ---------- */}
         <Page kicker="Capabilities" page="03">
           <p className="cap-eyebrow">What we do</p>
           <h2 className="cap-h2">
@@ -349,7 +389,7 @@ export default function CapabilityStatement() {
           </div>
         </Page>
 
-        {/* ---------- Page 4 — Track Record + Engagement ---------- */}
+        {/* ---------- Page 4 - Track Record + Engagement ---------- */}
         <Page kicker="Track Record" page="04">
           <section className="cap-section">
             <p className="cap-eyebrow">Track Record</p>
@@ -387,7 +427,7 @@ export default function CapabilityStatement() {
           </section>
         </Page>
 
-        {/* ---------- Page 5 — Technology + Expertise + Contact ---------- */}
+        {/* ---------- Page 5 - Technology + Expertise + Contact ---------- */}
         <Page kicker="Technology" page="05">
           <section className="cap-section">
             <p className="cap-eyebrow">Technology &amp; Tools</p>
@@ -465,6 +505,10 @@ export default function CapabilityStatement() {
               <div className="cap-cn">
                 <span className="cap-cn-k">Location</span>
                 <span className="cap-cn-v">{CONTACT.location}</span>
+              </div>
+              <div className="cap-cn">
+                <span className="cap-cn-k">Markets</span>
+                <span className="cap-cn-v">{CONTACT.markets}</span>
               </div>
             </div>
           </div>

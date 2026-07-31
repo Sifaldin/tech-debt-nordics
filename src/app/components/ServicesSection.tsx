@@ -10,53 +10,68 @@ import React, {
 } from 'react';
 import Reveal from './Reveal';
 
+// Ordered by what we want to be found for: AI and the three engineering
+// disciplines (frontend / backend / full-stack) lead, then the delivery
+// capabilities that show we take on whatever the problem needs.
 export const SERVICES = [
   {
     n: '01',
-    title: 'Tech Debt Audit',
+    title: 'AI Engineering',
     points: [
-      'Platform assessment',
-      'Debt quantification',
-      'Prioritized roadmap',
+      'RAG & vector search',
+      'LLM APIs & agentic workflows',
+      'AI features in existing products',
+      'AI-assisted delivery',
     ],
-    outcome: 'Actionable plan, measurable impact.',
-    icon: 'audit',
+    outcome: 'AI that ships to production, not to a demo.',
+    icon: 'ai',
   },
   {
     n: '02',
-    title: 'Software Architecture',
-    points: ['Scalable design', 'System strategy', 'Technical leadership'],
-    outcome: 'Resilient architecture built for scale.',
-    icon: 'architecture',
-  },
-  {
-    n: '03',
-    title: 'Integration Engineering',
-    points: ['Event-driven design', 'Apache Camel, Kafka', 'APIs & messaging'],
-    outcome: 'Reliable integrations that scale.',
-    icon: 'integration',
-  },
-  {
-    n: '04',
-    title: 'Payments & Checkout',
-    points: [
-      'Payment platform design',
-      'Checkout optimization',
-      'Klarna, Botim, PaymentIQ',
-    ],
-    outcome: 'Secure, high-performing payment experiences.',
-    icon: 'payments',
-  },
-  {
-    n: '05',
     title: 'Frontend Engineering',
     points: [
       'React, Next.js, TypeScript',
+      'Design systems',
       'Performance focused',
       'Accessible by design',
     ],
     outcome: 'Fast, accessible interfaces users love.',
     icon: 'frontend',
+  },
+  {
+    n: '03',
+    title: 'Backend & API Engineering',
+    points: [
+      'Java, Spring Boot, Node.js, Go',
+      'REST & GraphQL APIs',
+      'Distributed systems',
+      'Databases & performance',
+    ],
+    outcome: 'Backends that hold up under real load.',
+    icon: 'backend',
+  },
+  {
+    n: '04',
+    title: 'Full-Stack Product Delivery',
+    points: [
+      'End-to-end ownership',
+      'Discovery to production',
+      'One accountable team',
+    ],
+    outcome: 'From idea to live product, no handoff gaps.',
+    icon: 'fullstack',
+  },
+  {
+    n: '05',
+    title: 'Native & Mobile Apps',
+    points: [
+      'iOS & Android',
+      'React Native',
+      'App Store & Play delivery',
+      'Offline & device APIs',
+    ],
+    outcome: 'Apps that feel native, on every device.',
+    icon: 'mobile',
   },
   {
     n: '06',
@@ -72,6 +87,54 @@ export const SERVICES = [
   },
   {
     n: '07',
+    title: 'Integration Engineering',
+    points: ['Event-driven design', 'Apache Camel, Kafka', 'APIs & messaging'],
+    outcome: 'Reliable integrations that scale.',
+    icon: 'integration',
+  },
+  {
+    n: '08',
+    title: 'Payments & Checkout',
+    points: [
+      'Payment platform design',
+      'Checkout optimization',
+      'Klarna, Botim, PaymentIQ',
+    ],
+    outcome: 'Secure, high-performing payment experiences.',
+    icon: 'payments',
+  },
+  {
+    n: '09',
+    title: 'Tech Debt Audit',
+    points: [
+      'Platform assessment',
+      'Debt quantification',
+      'Prioritized roadmap',
+    ],
+    outcome: 'Actionable plan, measurable impact.',
+    icon: 'audit',
+  },
+  {
+    n: '10',
+    title: 'Software Architecture',
+    points: ['Scalable design', 'System strategy', 'Technical leadership'],
+    outcome: 'Resilient architecture built for scale.',
+    icon: 'architecture',
+  },
+  {
+    n: '11',
+    title: 'Support & Maintenance',
+    points: [
+      'Website & app support',
+      'Upgrades & security patching',
+      'Monitoring & incident response',
+      'Retainer or on-demand',
+    ],
+    outcome: 'Someone who answers when it breaks.',
+    icon: 'support',
+  },
+  {
+    n: '12',
     title: 'Project Planning & Controls',
     points: [
       'Primavera P6 scheduling',
@@ -87,7 +150,9 @@ export const SERVICES = [
 // fixed height pattern for the bottom signal-meter ticks
 const TICKS = [4, 7, 10, 6, 8, 5, 9, 4, 7, 11, 6, 8, 5, 9, 4, 7, 10, 6];
 
-// per-card glow: tint (cyan-dominant, pink accents) + where the light sits
+// per-card glow: tint (cyan-dominant, pink accents) + where the light sits.
+// Shorter than SERVICES on purpose - indexed modulo, so the pattern repeats
+// and adding a service never needs a matching entry here.
 const GLOW = [
   { rgb: '53, 210, 230', x: '22%', y: '-6%', i: '0.30' },
   { rgb: '255, 70, 160', x: '80%', y: '8%', i: '0.24' },
@@ -111,6 +176,65 @@ export const ServiceIcon: FC<{ name: string }> = ({ name }) => {
   };
   const dot = { fill: 'currentColor', stroke: 'none' as const };
   switch (name) {
+    // neural graph + spark - AI engineering
+    case 'ai':
+      return (
+        <svg {...p}>
+          <circle cx="13" cy="18" r="3.4" />
+          <circle cx="13" cy="46" r="3.4" />
+          <circle cx="32" cy="32" r="5" />
+          <circle cx="51" cy="20" r="3.4" />
+          <circle cx="51" cy="44" r="3.4" />
+          <path d="M16 20.5 27.5 29M16 43.5 27.5 35M36.5 29.5 48 22M36.5 34.5 48 42" />
+          <path d="M32 6v5M29.5 8.5h5" />
+        </svg>
+      );
+    // layered server rack + database - backend & APIs
+    case 'backend':
+      return (
+        <svg {...p}>
+          <rect x="11" y="10" width="42" height="13" rx="3" />
+          <rect x="11" y="27" width="42" height="13" rx="3" />
+          <path d="M11 47v-3h42v3" />
+          <ellipse cx="32" cy="52" rx="11" ry="4.5" />
+          <circle cx="18" cy="16.5" r="1.7" {...dot} />
+          <circle cx="18" cy="33.5" r="1.7" {...dot} />
+          <path d="M40 16.5h7M40 33.5h7" />
+        </svg>
+      );
+    // window over a stack - full-stack ownership, top to bottom
+    case 'fullstack':
+      return (
+        <svg {...p}>
+          <rect x="10" y="8" width="44" height="18" rx="3" />
+          <path d="M10 15h44" />
+          <circle cx="15.5" cy="11.5" r="1.4" {...dot} />
+          <rect x="10" y="30" width="44" height="11" rx="3" />
+          <rect x="10" y="45" width="44" height="11" rx="3" />
+          <circle cx="16" cy="35.5" r="1.6" {...dot} />
+          <circle cx="16" cy="50.5" r="1.6" {...dot} />
+          <path d="M26 35.5h20M26 50.5h20" />
+        </svg>
+      );
+    // handset - native & mobile apps
+    case 'mobile':
+      return (
+        <svg {...p}>
+          <rect x="19" y="6" width="26" height="52" rx="5" />
+          <path d="M19 15h26M19 49h26" />
+          <path d="M28.5 10.5h7" />
+          <circle cx="32" cy="53.5" r="2" {...dot} />
+          <path d="M26 25h12M26 32h12M26 39h8" />
+        </svg>
+      );
+    // shield with a check - ongoing support & maintenance
+    case 'support':
+      return (
+        <svg {...p}>
+          <path d="M32 6 12 14v16c0 14 8.5 22 20 28 11.5-6 20-14 20-28V14L32 6Z" />
+          <path d="M23 32.5 29.5 39 42 26" />
+        </svg>
+      );
     case 'audit':
       return (
         <svg {...p}>
@@ -204,7 +328,7 @@ const NavArrow: FC<{ dir: 'prev' | 'next' }> = ({ dir }) => (
 
 const ServicesSection: FC = () => {
   const stripRef = useRef<HTMLDivElement>(null);
-  // whether the strip overflows, and whether we're pinned to either end —
+  // whether the strip overflows, and whether we're pinned to either end -
   // drives the arrows' enabled state and the edge fade masks.
   const [edge, setEdge] = useState({ scroll: false, start: true, end: false });
 
@@ -242,13 +366,20 @@ const ServicesSection: FC = () => {
     `${canNext ? 'transparent 100%' : '#000 100%'})`;
 
   return (
-    <section id="services" className="page-bottom px-6 pt-6">
+    <section id="services" className="px-6 pt-6 pb-20">
       <Reveal>
         <div className="mx-auto mb-12 max-w-6xl text-center">
+          <p className="eyebrow mb-3">What we build</p>
           <h2 className="t-heading text-3xl sm:text-4xl md:text-5xl">
             <span className="text-white">Pay down the </span>
             <span className="neon-word pink neon-flicker">debt</span>
           </h2>
+          <p className="card-copy mx-auto mt-5 max-w-2xl text-slate-300/85">
+            B2B engineering across the whole stack: AI, frontend, backend,
+            native apps, cloud and the support that keeps them alive. Plus
+            Primavera P6 planning and project controls for capital projects. If
+            it needs building, we build it.
+          </p>
         </div>
       </Reveal>
 
@@ -268,41 +399,44 @@ const ServicesSection: FC = () => {
             onScroll={measure}
             style={{ WebkitMaskImage: mask, maskImage: mask }}
           >
-            {SERVICES.map((s, i) => (
-              <div
-                className="svc-tile"
-                key={s.title}
-                style={
-                  {
-                    '--off': i % 2 === 0 ? '-20px' : '20px',
-                    '--glow-rgb': GLOW[i].rgb,
-                    '--gx': GLOW[i].x,
-                    '--gy': GLOW[i].y,
-                    '--gi': GLOW[i].i,
-                    animationDelay: `${i * 0.6}s`,
-                  } as CSSProperties
-                }
-              >
-                <div className="svc-ico neon-icon">
-                  <ServiceIcon name={s.icon} />
+            {SERVICES.map((s, i) => {
+              const g = GLOW[i % GLOW.length];
+              return (
+                <div
+                  className="svc-tile"
+                  key={s.title}
+                  style={
+                    {
+                      '--off': i % 2 === 0 ? '-20px' : '20px',
+                      '--glow-rgb': g.rgb,
+                      '--gx': g.x,
+                      '--gy': g.y,
+                      '--gi': g.i,
+                      animationDelay: `${i * 0.6}s`,
+                    } as CSSProperties
+                  }
+                >
+                  <div className="svc-ico neon-icon">
+                    <ServiceIcon name={s.icon} />
+                  </div>
+                  <h3 className="svc-title t-card-title">{s.title}</h3>
+                  <ul className="svc-bullets">
+                    {s.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <div className="svc-outcome">
+                    <span className="svc-outcome-label">Outcome</span>
+                    <p className="svc-outcome-text card-copy">{s.outcome}</p>
+                  </div>
+                  <div className="svc-ticks" aria-hidden="true">
+                    {TICKS.map((h, k) => (
+                      <i key={k} style={{ height: `${h}px` }} />
+                    ))}
+                  </div>
                 </div>
-                <h3 className="svc-title t-card-title">{s.title}</h3>
-                <ul className="svc-bullets">
-                  {s.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-                <div className="svc-outcome">
-                  <span className="svc-outcome-label">Outcome</span>
-                  <p className="svc-outcome-text card-copy">{s.outcome}</p>
-                </div>
-                <div className="svc-ticks" aria-hidden="true">
-                  {TICKS.map((h, k) => (
-                    <i key={k} style={{ height: `${h}px` }} />
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <button
             type="button"

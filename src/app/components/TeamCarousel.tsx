@@ -122,7 +122,7 @@ const TeamCarousel: FC = () => {
   // the flat, untransformed element the wheel/touch gestures are captured on
   const sceneRef = useRef<HTMLDivElement>(null);
   // points at whichever face of the active card is currently showing (bio or
-  // skills) — the thing the chevrons scroll.
+  // skills) - the thing the chevrons scroll.
   const faceRef = useRef<HTMLDivElement>(null);
   // a tap kicks off a ~0.7s orient/flip animation during which the card slides
   // under the cursor; `settleRef` marks when so we can tell "card moved" leaves
@@ -163,7 +163,7 @@ const TeamCarousel: FC = () => {
     setFlipped(false);
   };
 
-  // Which card is nearest the front right now — the spin keeps moving, so this
+  // Which card is nearest the front right now - the spin keeps moving, so this
   // is read live off the transform rather than tracked in state.
   const frontIndex = () => {
     const spin = readSpinAngle();
@@ -201,7 +201,7 @@ const TeamCarousel: FC = () => {
     overCardRef.current = true;
   };
 
-  // Leaving a card resumes the spin — but a tap's orient/flip animation slides
+  // Leaving a card resumes the spin - but a tap's orient/flip animation slides
   // the card out from under a still cursor, firing a bogus leave. While that
   // animation is settling we defer and re-check: resume only if the pointer
   // truly isn't on a card once it finishes.
@@ -239,10 +239,10 @@ const TeamCarousel: FC = () => {
   // Hit-testing inside the card is not trustworthy: the cylinder runs a
   // compositor-driven transform animation under a perspective, so the browser
   // resolves "what's under the pointer" against a transform that doesn't match
-  // what's painted — only a band of the card ever routes the wheel/drag to the
+  // what's painted - only a band of the card ever routes the wheel/drag to the
   // scroll port. So the gesture is captured on .carousel-scene, which is flat
   // and hit-tests normally, and applied to the shown face by hand (same trick
-  // the chevrons use). Anywhere on the card — or the scene around it — scrolls.
+  // the chevrons use). Anywhere on the card - or the scene around it - scrolls.
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return;
@@ -418,10 +418,10 @@ const TeamCarousel: FC = () => {
                         }
                       }}
                       aria-pressed={isFlipped}
-                      aria-label={`${member.name} — tap to ${isActive ? 'flip' : 'focus'}`}
+                      aria-label={`${member.name}, tap to ${isActive ? 'flip' : 'focus'}`}
                       className={`card-inner ${isFlipped ? 'is-flipped' : ''}`}
                     >
-                      {/* Front — portrait + bio */}
+                      {/* Front - portrait + bio */}
                       <div className="card-face card-front items-center p-4 text-center">
                         {/* the whole inner area scrolls, not just the bio, so a
                             finger can land anywhere on the card */}
@@ -455,7 +455,7 @@ const TeamCarousel: FC = () => {
                         {isActive && !flipped && nav.show && chevrons}
                       </div>
 
-                      {/* Back — blinking neon skill chips */}
+                      {/* Back - blinking neon skill chips */}
                       <div className="card-face card-back p-4">
                         <p className="eyebrow mb-2 pt-1 text-center !text-[9px]">
                           {firstName} · Stack

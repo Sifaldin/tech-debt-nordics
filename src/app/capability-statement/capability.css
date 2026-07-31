@@ -1,4 +1,4 @@
-/* Capability Statement — A4 document (screen preview + print/PDF).
+/* Capability Statement - A4 document (screen preview + print/PDF).
    Reuses the site's cyberpunk tokens from globals.css. All colour is
    forced-exact on print so the dark brand survives the PDF render. */
 
@@ -580,7 +580,7 @@
   }
   /* Neon glow is a screen-only effect. Chrome rasterizes text-shadow /
      box-shadow / filter into soft-mask layers that mobile PDF viewers render
-     as corrupt black boxes — strip them all for print. Colours stay flat. */
+     as corrupt black boxes - strip them all for print. Colours stay flat. */
   .cap-page *,
   .cap-page *::before,
   .cap-page *::after {
