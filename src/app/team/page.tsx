@@ -14,23 +14,39 @@ export const metadata: Metadata = {
 // carousel renders so the markup can never describe someone the page does not.
 // The bios and skills are real, which is the point: who does the work is a
 // credibility signal, and the carousel alone leaves it invisible to crawlers.
+//
+// This is an AboutPage, not a ProfilePage. Google's ProfilePage requires a
+// single Person or Organization as mainEntity (the one subject of the profile),
+// and Search Console flagged the old ProfilePage here as missing mainEntity.
+// A team page describes several people, so the honest shape is an AboutPage
+// whose mainEntity is an ItemList of the engineers.
 const JSON_LD = {
   '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  '@id': `${SITE_URL}/team#profilepage`,
+  '@type': 'AboutPage',
+  '@id': `${SITE_URL}/team#webpage`,
   name: 'Our Team | Tech Debt Nordics',
   url: `${SITE_URL}/team`,
   isPartOf: { '@id': `${SITE_URL}/#website` },
-  about: TEAM.map((m) => ({
-    '@type': 'Person',
-    '@id': `${SITE_URL}/team#${m.name.toLowerCase().replace(/\s+/g, '-')}`,
-    name: m.name,
-    jobTitle: m.role,
-    description: m.bio,
-    image: `${SITE_URL}${m.imageSrc}`,
-    knowsAbout: m.skills,
-    worksFor: { '@id': `${SITE_URL}/#organization` },
-  })),
+  about: { '@id': `${SITE_URL}/#organization` },
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Tech Debt Nordics engineering team',
+    numberOfItems: TEAM.length,
+    itemListElement: TEAM.map((m, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Person',
+        '@id': `${SITE_URL}/team#${m.name.toLowerCase().replace(/\s+/g, '-')}`,
+        name: m.name,
+        jobTitle: m.role,
+        description: m.bio,
+        image: `${SITE_URL}${m.imageSrc}`,
+        knowsAbout: m.skills,
+        worksFor: { '@id': `${SITE_URL}/#organization` },
+      },
+    })),
+  },
 };
 
 export default function TeamPage() {
